@@ -23,13 +23,7 @@ module.exports = {
     'eslint-plugin-sonarjs', // The sonarjs checks are pure gold.
     'eslint-plugin-test-selectors', // This is incredibly nice for QA on complicated apps.
   ],
-  extends: [
-    'airbnb-base',
-    'plugin:import/typescript',
-    'plugin:jest/recommended',
-    'plugin:json/recommended-with-comments',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['airbnb-base', 'plugin:import/typescript', 'plugin:jest/recommended', 'plugin:prettier/recommended'],
   rules: {
     'bestpractices/no-eslint-disable': 'warn',
 
@@ -156,6 +150,13 @@ module.exports = {
    */
 
   overrides: [
+    {
+      files: ['*.json'],
+      extends: ['plugin:json/recommended-with-comments'],
+      rules: {
+        // Just including an overrides section allow eslint-config-json to be applied by running `eslint .`, instead of needing to specify file extensions, everywhere.
+      },
+    },
     {
       // Don't redundantly apply JSDoc rules to TypeScript files
       files: ['*.js?(x)', '*.html'],
